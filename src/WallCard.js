@@ -9,6 +9,8 @@ import {
   CardDeck,
   CardSubtitle,
   CardBody,
+  Row,
+  Col,
 } from "reactstrap";
 
 export default function WallCard(props) {
@@ -22,31 +24,39 @@ export default function WallCard(props) {
         <p style={{ textAlign: "center" }}>Get Latest & Cool Walls</p>
       </div>
       <br />
-
-      {props.data.map((item) =>
-        item.map((i) => {
-          return (
-            <div key={i.id}>
-              <CardDeck>
-                <Card>
-                  <CardImg top src={i.url} alt={i.title} />
-                  <CardBody>
-                    <CardTitle>{i.title}</CardTitle>
-                    <CardSubtitle>{i.author}</CardSubtitle>
-                    <a href={i.url}>
-                      <Button color="primary">
-                        Click To View Full Size Image
-                      </Button>
-                    </a>
-                  </CardBody>
-                </Card>
-              </CardDeck>
-              <br />
-              <br />
-            </div>
-          );
-        })
-      )}
+      <Row>
+        {props.data.map((item) =>
+          item.map((i) => {
+            return (
+              <Col key={i.id} className="col-sm-12 col-md-6 col-lg-4">
+                <div>
+                  <CardDeck>
+                    <Card>
+                      <CardImg
+                        top
+                        src={i.small_img}
+                        alt={i.title}
+                        style={{ height: "auto" }}
+                      />
+                      <CardBody>
+                        <CardTitle>{i.title}</CardTitle>
+                        <CardSubtitle>{i.author}</CardSubtitle>
+                        <a href={i.url} target="_blank">
+                          <Button color="primary" className="m-3 p-2">
+                            Click To View Full Size Image
+                          </Button>
+                        </a>
+                      </CardBody>
+                    </Card>
+                  </CardDeck>
+                  <br />
+                  <br />
+                </div>
+              </Col>
+            );
+          })
+        )}
+      </Row>
     </div>
   );
 }
