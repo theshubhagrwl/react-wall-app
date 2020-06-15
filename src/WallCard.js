@@ -31,7 +31,7 @@ export default function WallCard(props) {
               <Col
                 key={i.id}
                 className="col-sm-12 col-md-6 col-lg-4"
-                style={{ minWidth: "250px" }}
+                style={{ minWidth: "200px" }}
               >
                 <div>
                   <CardDeck>
