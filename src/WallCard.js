@@ -28,7 +28,11 @@ export default function WallCard(props) {
         {props.data.map((item) =>
           item.map((i) => {
             return (
-              <Col key={i.id} className="col-sm-12 col-md-6 col-lg-4">
+              <Col
+                key={i.id}
+                className="col-sm-12 col-md-6 col-lg-4"
+                style={{ minWidth: "250px" }}
+              >
                 <div>
                   <CardDeck>
                     <Card>
