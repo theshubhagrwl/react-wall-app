@@ -1,11 +1,11 @@
 import React from "react";
+
 import "./App.css";
 import {
   Card,
   Button,
   CardImg,
   CardTitle,
-  CardText,
   CardDeck,
   CardSubtitle,
   CardBody,
@@ -50,6 +50,24 @@ export default function WallCard(props) {
                             Click To View Full Size Image
                           </Button>
                         </a>
+                        <div className="dropdown">
+                          <button className="btn btn-danger dropdown-toggle" 
+                          type="button" id="dropdownMenuButton" 
+                          data-toggle="dropdown" 
+                          aria-haspopup="true" 
+                          aria-expanded="false">
+                            resolutions
+                          </button>
+                          
+                          {/* dropdown menu for different resolutions */}
+                          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {i.res.map((item, index) => {
+                              return (
+                              <a className="dropdown-item" key={index} href={item.url}>{item.width + 'x' + item.height}</a>
+                              )
+                            })}
+                          </div>
+                        </div>
                       </CardBody>
                     </Card>
                   </CardDeck>

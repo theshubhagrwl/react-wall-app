@@ -11,15 +11,19 @@ export default function App() {
           let newArr = [];
           response.data.children.map((item) => {
             try {
-              const parent_img = item.data.preview.images[0].resolutions[3].url;
-              newArr.push({
-                id: item.data.id,
-                title: item.data.title,
-                thumbnail: item.data.thumbnail,
-                url: item.data.url,
-                author: item.data.author,
-                small_img: parent_img,
-              });
+              if (item.data.preview && item.data.preview.images[0].resolutions[3]) {
+                const parent_img = item.data.preview.images[0].resolutions[3].url;
+                newArr.push({
+                  id: item.data.id,
+                  title: item.data.title,
+                  thumbnail: item.data.thumbnail,
+                  url: item.data.url,
+                  author: item.data.author,
+                  small_img: parent_img,
+                  res: item.data.preview.images[0].resolutions,
+                });
+              }
+              
             } catch (e) {
               console.log(e);
             }
