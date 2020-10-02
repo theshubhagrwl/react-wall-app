@@ -27,6 +27,7 @@ export default function App() {
             } catch (e) {
               console.log(e);
             }
+            return null;
           });
           setData([newArr]);
         })
@@ -46,6 +47,7 @@ export default function App() {
           <a
             href="https://www.instagram.com/theshubhagrwl/"
             target="_blank"
+            rel="noopener noreferrer"
             className="text-white"
           >
             Shubh

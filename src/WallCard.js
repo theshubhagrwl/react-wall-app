@@ -31,49 +31,45 @@ export default function WallCard(props) {
               <Col
                 key={i.id}
                 className="col-sm-12 col-md-6 col-lg-4"
-                style={{ minWidth: "200px" }}
+                style={{ minWidth: "200px", margin: ".2rem 0"}}
               >
-                <div>
-                  <CardDeck>
-                    <Card>
-                      <CardImg
-                        top
-                        src={i.small_img}
-                        alt={i.title}
-                        style={{ height: "auto" }}
-                      />
-                      <CardBody>
-                        <CardTitle>{i.title}</CardTitle>
-                        <CardSubtitle>{i.author}</CardSubtitle>
-                        <a href={i.url} target="_blank">
-                          <Button color="primary" className="m-3 p-2">
-                            Click To View Full Size Image
-                          </Button>
-                        </a>
-                        <div className="dropdown">
-                          <button className="btn btn-danger dropdown-toggle" 
-                          type="button" id="dropdownMenuButton" 
-                          data-toggle="dropdown" 
-                          aria-haspopup="true" 
-                          aria-expanded="false">
-                            resolutions
-                          </button>
-                          
-                          {/* dropdown menu for different resolutions */}
-                          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            {i.res.map((item, index) => {
-                              return (
-                              <a className="dropdown-item" key={index} href={item.url}>{item.width + 'x' + item.height}</a>
-                              )
-                            })}
-                          </div>
+                <CardDeck style={{height: "100%"}}>
+                  <Card>
+                    <CardImg
+                      top
+                      src={i.small_img}
+                      alt={i.title}
+                      style={{ height: "300px" }}
+                    />
+                    <CardBody>
+                      <CardTitle>{i.title}</CardTitle>
+                      <CardSubtitle>{i.author}</CardSubtitle>
+                      <a href={i.url} rel="noopener noreferrer" target="_blank">
+                        <Button color="primary" className="m-3 p-2">
+                          Click To View Full Size Image
+                        </Button>
+                      </a>
+                      <div className="dropdown">
+                        <button className="btn btn-danger dropdown-toggle" 
+                        type="button" id="dropdownMenuButton" 
+                        data-toggle="dropdown" 
+                        aria-haspopup="true" 
+                        aria-expanded="false">
+                          resolutions
+                        </button>
+                        
+                        {/* dropdown menu for different resolutions */}
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          {i.res.map((item, index) => {
+                            return (
+                            <a className="dropdown-item" key={index} href={item.url}>{item.width + 'x' + item.height}</a>
+                            )
+                          })}
                         </div>
-                      </CardBody>
-                    </Card>
-                  </CardDeck>
-                  <br />
-                  <br />
-                </div>
+                      </div>
+                    </CardBody>
+                  </Card>
+                </CardDeck>
               </Col>
             );
           })
