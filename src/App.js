@@ -1,41 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import WallCard from "./WallCard";
 import { Container } from "reactstrap";
+import * as actions from "./store/actions/image/";
 
-export default function App() {
-  const [data, setData] = useState([]);
+const App = (props) => {
   useEffect(() => {
-    fetch("https://www.reddit.com/r/wallpapers.json?&limit=25&raw_json=1").then(
-      (res) =>
-        res.json().then((response) => {
-          let newArr = [];
-          response.data.children.map((item) => {
-            try {
-              if (item.data.preview && item.data.preview.images[0].resolutions[3]) {
-                const parent_img = item.data.preview.images[0].resolutions[3].url;
-                newArr.push({
-                  id: item.data.id,
-                  title: item.data.title,
-                  thumbnail: item.data.thumbnail,
-                  url: item.data.url,
-                  author: item.data.author,
-                  small_img: parent_img,
-                  res: item.data.preview.images[0].resolutions,
-                });
-              }
-              
-            } catch (e) {
-              console.log(e);
-            }
-          });
-          setData([newArr]);
-        })
-    );
+    if (!props.loading) {
+      // Fetching the images
+      props.fetchImages();
+    }
   }, []);
 
   return (
     <div>
-      <WallCard data={data} />
+      <WallCard />
       <Container
         fluid
         tag="footer"
@@ -55,3 +34,18 @@ export default function App() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    loading: state.image.loading,
+    error: state.image.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchImages: () => dispatch(actions.fetchImages()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

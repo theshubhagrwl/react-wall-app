@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 
 import "./App.css";
 import {
@@ -11,9 +11,29 @@ import {
   CardBody,
   Row,
   Col,
+  Spinner
 } from "reactstrap";
 
-export default function WallCard(props) {
+import { connect } from "react-redux";
+import * as actions from "./store/actions/image/";
+
+const WallCard = (props) => {
+
+  const observer = useRef();
+  const lastElement = useCallback(node => {
+    // If we are loading, don't run the funtion
+    if (props.loading) return
+    // If we have an observer, just disconnect it.
+    // so that we can connect it to a new one.
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        props.fetchImages(props.images.after)
+      }
+    })
+    if (node) observer.current.observe(node)
+  }, [props.loading])
+
   return (
     <div
       className="container"
@@ -25,15 +45,17 @@ export default function WallCard(props) {
       </div>
       <br />
       <Row>
-        {props.data.map((item) =>
-          item.map((i) => {
+        {props.images.data.map((item) =>
+          item.map((i, index) => {
             return (
               <Col
                 key={i.id}
                 className="col-sm-12 col-md-6 col-lg-4"
                 style={{ minWidth: "200px" }}
               >
-                <div>
+                <div
+                  // If the element is the last one, attach the callback function
+                  ref={item.length === index + 1 ? lastElement : null}>
                   <CardDeck>
                     <Card>
                       <CardImg
@@ -61,11 +83,10 @@ export default function WallCard(props) {
                           
                           {/* dropdown menu for different resolutions */}
                           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            {i.res.map((item, index) => {
-                              return (
+                            {i.res.map((item, index) => (
                               <a className="dropdown-item" key={index} href={item.url}>{item.width + 'x' + item.height}</a>
                               )
-                            })}
+                            )}
                           </div>
                         </div>
                       </CardBody>
@@ -79,6 +100,24 @@ export default function WallCard(props) {
           })
         )}
       </Row>
+      {props.loading ? <Spinner animation="border" role="status" className="m-5">
+        <span className="sr-only">Loading...</span>
+      </Spinner> : null}
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    loading: state.image.loading,
+    images: state.image.data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchImages: (after) => dispatch(actions.fetchImages(after)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WallCard);
