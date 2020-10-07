@@ -5,7 +5,6 @@ import {
   Button,
   CardImg,
   CardTitle,
-  CardText,
   CardDeck,
   CardSubtitle,
   CardBody,
@@ -20,7 +19,7 @@ export default function WallCard(props) {
       style={{ textAlign: "center", minHeight: "100vh" }}
     >
       <div className="container" style={{ textAlign: "center" }}>
-        <h1 className="display-3 mx-auto px-auto ">Wallpapers</h1>
+        <h1 id="title" className="display-3 mx-auto px-auto ">Wallpapers</h1>
         <p style={{ textAlign: "center" }}>Get Latest & Cool Walls</p>
       </div>
       <br />
@@ -45,7 +44,7 @@ export default function WallCard(props) {
                       <CardBody>
                         <CardTitle>{i.title}</CardTitle>
                         <CardSubtitle>{i.author}</CardSubtitle>
-                        <a href={i.url} target="_blank">
+                        <a href={i.url} target="blank">
                           <Button color="primary" className="m-3 p-2">
                             Click To View Full Size Image
                           </Button>

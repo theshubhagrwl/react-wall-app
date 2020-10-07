@@ -9,6 +9,7 @@ export default function App() {
       (res) =>
         res.json().then((response) => {
           let newArr = [];
+          // eslint-disable-next-line
           response.data.children.map((item) => {
             try {
               const parent_img = item.data.preview.images[0].resolutions[3].url;
@@ -41,7 +42,7 @@ export default function App() {
           Made with ❤ by{" "}
           <a
             href="https://www.instagram.com/theshubhagrwl/"
-            target="_blank"
+            target="blank"
             className="text-white"
           >
             Shubh

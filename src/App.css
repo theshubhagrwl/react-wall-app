@@ -31,3 +31,9 @@ img {
   justify-content: center;
   align-items: center;
 } */
+
+@media all and (max-width: 375px){
+  #title{
+    font-size: 17vw;
+  }
+}
