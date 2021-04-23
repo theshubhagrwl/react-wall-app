@@ -7,8 +7,7 @@ import Navbar from "../components/Navbar";
 import Walls from "../components/Walls";
 import axios from "axios";
 
-export default function Home({ data }) {
-  var walls = data.data.children;
+export default function Home({ allData }) {
   return (
     <div>
       <Head>
@@ -18,7 +17,7 @@ export default function Home({ data }) {
 
       <main>
         <Navbar />
-        <Walls walls={walls} />
+        <Walls walls={allData} />
       </main>
     </div>
   );
@@ -29,10 +28,27 @@ export async function getServerSideProps(context) {
     `https://www.reddit.com/r/wallpapers.json?&limit=25&raw_json=1`
   );
   const data = await res.data;
+  var allData = [];
+  data.data.children.map((item) => {
+    try {
+      const parent_img = item.data.preview.images[0].resolutions[3].url;
+      allData.push({
+        id: item.data.id,
+        title: item.data.title,
+        thumbnail: item.data.thumbnail,
+        url: item.data.url,
+        author: item.data.author,
+        small_img: parent_img,
+        ups: item.data.ups,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  });
 
   return {
     props: {
-      data,
-    }, // will be passed to the page component as props
+      allData,
+    },
   };
 }

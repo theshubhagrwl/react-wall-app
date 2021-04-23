@@ -15,9 +15,9 @@ const MyApp = ({ Component, pageProps }) => {
   });
   return (
     <ThemeProvider theme={theme}>
-      <Paper style={{ height: "100vh" }}>
-        <Component {...pageProps} />
-      </Paper>
+      {/* <Paper style={{ height: "100vh" }}> */}
+      <Component {...pageProps} />
+      {/* </Paper> */}
     </ThemeProvider>
   );
 };
