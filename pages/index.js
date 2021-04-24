@@ -1,8 +1,5 @@
 import Head from "next/head";
 import { render } from "react-dom";
-// import styles from "../styles/Home.module.css";
-import Link from "next/link";
-import { Typography } from "@material-ui/core";
 import Navbar from "../components/Navbar";
 import Walls from "../components/Walls";
 import axios from "axios";
@@ -35,11 +32,11 @@ export async function getServerSideProps(context) {
       allData.push({
         id: item.data.id,
         title: item.data.title,
-        thumbnail: item.data.thumbnail,
         url: item.data.url,
         author: item.data.author,
         small_img: parent_img,
         ups: item.data.ups,
+        permalink: item.data.permalink,
       });
     } catch (e) {
       console.log(e);

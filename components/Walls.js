@@ -1,101 +1,56 @@
 import React, { useState } from "react";
-import { Button, Grid, Paper, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(2),
-    color: theme.palette.text.secondary,
-    // display: "flex",
-    // flexDirection: "column",
-    // alignItems: "center",
-    // justifyContent: "center",
-  },
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
-  },
-  grid: {
-    // cols: 4,
-    width: "10%",
-  },
-  titleBar: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  image: {
-    objectPosition: "center",
-    objectFit: "contain",
-    maxHeight: "30vh",
-    maxWidth: "50vw",
-  },
-}));
 
 const Walls = ({ walls }) => {
-  const classes = useStyles();
+  // console.log(walls);
   return (
     <>
-      <Grid container spacing={3} justify="center" alignItems="center">
-        {walls.map((wall) => (
-          <Grid
-            key={wall.id}
-            item
-            xs={12}
-            sm={6}
-            md={6}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-            }}
-          >
-            {/* <Paper className={classes.paper}> */}
-            <img src={wall.small_img} className={classes.image} />
-            <Typography variant="h6">{wall.title}</Typography>
-            <a href={wall.url} alt="url for original image">
-              <Button variant="contained" color="primary">
-                Download Original Image
-              </Button>
-            </a>
-            <Typography variant="body1">Author: {wall.author}</Typography>
-            {/* </Paper> */}
-          </Grid>
-        ))}
-      </Grid>
-      {/* <div className={classes.root}>
-      <GridList cellHeight={160} className={classes.gridList}>
-        {walls.map((wall) => (
-          <GridListTile
-            key={wall.id}
-            className={classes.grid}
-            cols={1}
-            rows={2}
-          >
-            <img src={wall.small_img} alt={wall.title} />
-            <GridListTileBar
-              className={classes.titleBar}
-              title={wall.title}
-              subtitle={<span>by: {wall.author}</span>}
-              // actionIcon={
-              //   <IconButton
-              //     aria-label={`info about ${wall.title}`}
-              //     className={classes.icon}
-              //   >
-              //     <InfoIcon />
-              //   </IconButton>
-              // }
-            />
-          </GridListTile>
-        ))}
-      </GridList>
-    </div> */}
+      <div className="container mx-auto px-4">
+        <section className="py-8 px-4">
+          <div class="flex flex-wrap -mx-1 overflow-hidden">
+            {walls.map((wall) => (
+              <div className="my-1 px-1 w-full overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3">
+                <a href={wall.url} alt="download wallpaper" target="_blank">
+                  <img
+                    className="rounded shadow-lg sm:h-80 sm:w-150 object-cover object-center mb-2"
+                    src={wall.small_img}
+                    alt={wall.title}
+                  />
+                </a>
+                <div>
+                  <div className="mt-2 font-bold text-md">{wall.title}</div>
+                  <div className="text-md">
+                    by:{" "}
+                    <a
+                      href={`https://www.reddit.com/user/${wall.author}`}
+                      className="text-indigo-500"
+                    >
+                      {wall.author}
+                    </a>
+                  </div>
+                  <div className="text-md mb-1">Upvotes: {wall.ups}</div>
+
+                  <a href={wall.url} alt="download wallpaper" target="_blank">
+                    <button class="bg-purple-700 hover:bg-purple-500 text-white font-bold py-2 px-3 rounded inline-flex items-center transform hover:translate-y-1 transition my-2 ">
+                      <svg
+                        class="fill-current w-4 h-4 mr-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+                      </svg>
+                      <span>Download</span>
+                    </button>
+                  </a>
+
+                  <a href={`https://www.reddit.com${wall.permalink}`}>
+                    <div className="text-xs ">View on Reddit.com</div>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
     </>
   );
 };
