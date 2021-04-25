@@ -1,19 +1,10 @@
-import Head from "next/head";
-import { render } from "react-dom";
-import Navbar from "../components/Navbar";
 import Walls from "../components/Walls";
 import axios from "axios";
 
 export default function Home({ allData }) {
   return (
     <div>
-      <Head>
-        <title> Wallpaper App </title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main>
-        {/* <Navbar /> */}
         <Walls walls={allData} />
       </main>
     </div>
