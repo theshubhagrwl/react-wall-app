@@ -22,7 +22,7 @@ export default function Home({ allData }) {
 
 export async function getServerSideProps(context) {
   const res = await axios.get(
-    `https://www.reddit.com/r/wallpapers.json?&limit=25&raw_json=1`
+    `https://www.reddit.com/r/wallpapers/${""}.json?&limit=25&raw_json=1`
   );
   const data = await res.data;
   var allData = [];

@@ -1,4 +1,6 @@
 import React from "react";
+import { AiFillFire } from "react-icons/ai";
+import { BiPolygon } from "react-icons/bi";
 
 const Navbar = () => {
   return (
@@ -63,17 +65,23 @@ const Navbar = () => {
               <div className="flex space-x-4">
                 <a
                   href="#"
-                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="bg-gray-900 text-white hover:bg-gray-700 px-3 py-2 rounded-md text-md font-medium flex flex-row items-center"
                   aria-current="page"
                 >
-                  Dashboard
+                  <span className="inline-flex pr-2">
+                    <AiFillFire />
+                  </span>
+                  Hot
                 </a>
 
                 <a
                   href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className="bg-gray-900 text-white hover:bg-gray-700 px-3 py-2 rounded-md text-md font-medium flex flex-row items-center"
                 >
-                  Team
+                  <span className="inline-flex pr-2">
+                    <BiPolygon />
+                  </span>
+                  Top
                 </a>
               </div>
             </div>
