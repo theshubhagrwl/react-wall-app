@@ -1,6 +1,7 @@
 import React from "react";
-import { AiFillFire } from "react-icons/ai";
+import { AiFillFire, AiFillHome } from "react-icons/ai";
 import { BiPolygon } from "react-icons/bi";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -61,28 +62,45 @@ const Navbar = () => {
               />
             </div> */}
             {/* <div className="hidden sm:block sm:ml-6"> */}
-            <div className="sm:block sm:ml-6">
+            <div className="sm:block">
               <div className="flex space-x-4">
-                <a
-                  href="#"
+                <div
                   className="bg-gray-900 text-white hover:bg-gray-700 px-3 py-2 rounded-md text-md font-medium flex flex-row items-center"
                   aria-current="page"
                 >
-                  <span className="inline-flex pr-2">
-                    <AiFillFire />
-                  </span>
-                  Hot
-                </a>
-
-                <a
-                  href="#"
+                  <Link href="/">
+                    <a>
+                      <span className="inline-flex pr-2">
+                        <AiFillHome />
+                      </span>
+                      Home
+                    </a>
+                  </Link>
+                </div>
+                <div
                   className="bg-gray-900 text-white hover:bg-gray-700 px-3 py-2 rounded-md text-md font-medium flex flex-row items-center"
+                  aria-current="page"
                 >
-                  <span className="inline-flex pr-2">
-                    <BiPolygon />
-                  </span>
-                  Top
-                </a>
+                  <Link href="/hotwalls">
+                    <a>
+                      <span className="inline-flex pr-2">
+                        <AiFillFire />
+                      </span>
+                      Hot
+                    </a>
+                  </Link>
+                </div>
+
+                <div className="bg-gray-900 text-white hover:bg-gray-700 px-3 py-2 rounded-md text-md font-medium flex flex-row items-center">
+                  <Link href="/newwalls">
+                    <a>
+                      <span className="inline-flex pr-2">
+                        <BiPolygon />
+                      </span>
+                      New
+                    </a>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

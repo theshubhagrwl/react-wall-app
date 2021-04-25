@@ -1,28 +1,20 @@
-import Head from "next/head";
-import { render } from "react-dom";
-import Navbar from "../components/Navbar";
+import React from "react";
 import Walls from "../components/Walls";
 import axios from "axios";
 
-export default function Home({ allData }) {
+const hotwalls = ({ allData }) => {
   return (
-    <div>
-      <Head>
-        <title> Wallpaper App </title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        {/* <Navbar /> */}
-        <Walls walls={allData} />
-      </main>
-    </div>
+    <>
+      <Walls walls={allData} />
+    </>
   );
-}
+};
+
+export default hotwalls;
 
 export async function getServerSideProps(context) {
   const res = await axios.get(
-    "https://www.reddit.com/r/wallpapers/.json?&limit=30&raw_json=1"
+    "https://www.reddit.com/r/wallpaper/hot.json?&limit=30&raw_json=1"
   );
   const data = await res.data;
   var allData = [];
