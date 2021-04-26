@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const Walls = ({ walls }) => {
-  // console.log(walls);
   return (
     <>
       <div className="container mx-auto px-4">
