@@ -1,4 +1,4 @@
-import { AiFillFire, AiFillHome } from "react-icons/ai";
+import { AiFillFire, AiFillHome, AiFillGithub } from "react-icons/ai";
 import { BiPolygon } from "react-icons/bi";
 import Link from "next/link";
 
@@ -52,7 +52,14 @@ const Navbar = () => {
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <div className="ml-3 relative">
-              <div></div>
+              <div className="hidden md:block bg-gray-900 text-white hover:bg-gray-700 px-3 py-2 rounded-md text-md font-medium flex flex-row items-center">
+                <a href="https://github.com/theshubhagrwl/react-wall-app">
+                  <span className="inline-flex pr-2">
+                    <AiFillGithub />
+                  </span>
+                  GitHub
+                </a>
+              </div>
             </div>
           </div>
         </div>
