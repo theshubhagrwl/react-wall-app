@@ -10,6 +10,7 @@
     "autoprefixer": "9",
     "axios": "^0.21.1",
     "next": "latest",
+    "nprogress": "^0.2.0",
     "postcss": "7",
     "postcss-preset-env": "^6.7.0",
     "react": "latest",
